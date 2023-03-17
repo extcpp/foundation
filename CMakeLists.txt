@@ -11,16 +11,7 @@ option(EXT_WRITE_VERSION "write git-revision into header")
 # include cmake functions and macros
 # NOTE: no functions are actually called
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-
-include(ext_logging)
-### declare FetchContent dependencies
-### IFF EXT_NO_DOWNLOAD is set to FALSE
-include(ext_declare_dependencies)
-include(ext_colored_output)
-include(ext_warnings)
-include(ext_install)
-include(ext_project_defaults)
-include(ext_version)
+include(define_ext_foundation_macros)
 
 ## gather system information
 include (TestBigEndian)
@@ -105,8 +96,13 @@ EXT_DEFAULT_INSTALL_PREFIX()
 ## installation
 if(COMMAND EXT_INSTALL)
     set_target_properties(ext-foundation PROPERTIES EXPORT_NAME foundation)
-    #           lib            namespace  config-name   extra-dirs
-    EXT_INSTALL(ext-foundation "ext::"    ExtFoundation include/ext cmake)
+    #           lib            namespace  config-name   include-dirs
+    EXT_INSTALL(ext-foundation "ext::"    ExtFoundation include/ext)
+
+    install(
+        DIRECTORY   cmake
+        DESTINATION lib
+    )
 endif()
 
 EXT_RUN_VERSION_SCRIPT(foundation)
