@@ -1,0 +1,4 @@
+/build*
+support
+build_dir
+compile_commands.json
