@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------------
+# EXT_DECLARE_DEPENDENCIES
+# -----------------------------------------------------------------------------
+# Declares some libraries for the usage with the FetchContent module.
+# IMPORTANT: Libraries are only declared IFF EXT_DOWNLOAD is set to ON.
+# -----------------------------------------------------------------------------
 macro(EXT_DECLARE_DEPENDENCIES)
     ext_log("declaring FetchContent dependencies")
     include(FetchContent)

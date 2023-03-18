@@ -11,7 +11,7 @@ option(EXT_WRITE_VERSION "write git-revision into header")
 # include cmake functions and macros
 # NOTE: no functions are actually called
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-include(define_ext_foundation_macros)
+include(use_ext_macros)
 
 ## gather system information
 include (TestBigEndian)
@@ -69,6 +69,7 @@ set(ext_common_compile_definitions
 )
 
 ### library definition
+ext_set_default_install_prefix("$ENV{HOME}/.local")
 include(include_files.cmake)
 add_library(ext-foundation INTERFACE)
 target_include_directories(ext-foundation INTERFACE
@@ -90,19 +91,14 @@ target_compile_definitions(ext-foundation INTERFACE
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${ext-foundation-header} ${ext-foundation-source})
 add_library(ext::foundation ALIAS ext-foundation)
 
-# install to ~/.local/ instead of /usr/local as default
-EXT_DEFAULT_INSTALL_PREFIX()
-
 ## installation
-if(COMMAND EXT_INSTALL)
-    set_target_properties(ext-foundation PROPERTIES EXPORT_NAME foundation)
-    #           lib            namespace  config-name   include-dirs
-    EXT_INSTALL(ext-foundation "ext::"    ExtFoundation include/ext)
+set_target_properties(ext-foundation PROPERTIES EXPORT_NAME foundation)
+#               lib            namespace  config-name   include-dirs
+ext_install_lib(ext-foundation "ext::"    ExtFoundation include/ext)
 
-    install(
-        DIRECTORY   cmake
-        DESTINATION lib
-    )
-endif()
+install(
+    DIRECTORY   cmake
+    DESTINATION lib
+)
 
-EXT_RUN_VERSION_SCRIPT(foundation)
+ext_generate_version_hpp(foundation)

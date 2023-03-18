@@ -1,25 +1,31 @@
 # -----------------------------------------------------------------------------
-# EXT_DEFAULT_INSTALL_PREFIX
+# ext_set_default_install_prefix
 # -----------------------------------------------------------------------------
 # Change the default install location to home so that a normal use can do
-# the install
+# the install.
 # -----------------------------------------------------------------------------
-macro(EXT_DEFAULT_INSTALL_PREFIX)
+function(ext_set_default_install_prefix prefix)
     if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        ext_log("install location defaulted")
         if(UNIX)
-            set(CMAKE_INSTALL_PREFIX  "$ENV{HOME}/.local")
+            set(CMAKE_INSTALL_PREFIX ${prefix} PARENT_SCOPE)
+            ext_log("CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} (changed default)")
         else()
             # do not change the default for other operating systems
+            ext_log("CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} (unchanged)")
         endif()
     else()
-        ext_log("install location manually provided")
+        ext_log("CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} (user provided)")
     endif()
     ext_log("installing to: ${CMAKE_INSTALL_PREFIX}")
-endmacro(EXT_DEFAULT_INSTALL_PREFIX)
+endfunction(ext_set_default_install_prefix)
 
-macro(EXT_INSTALL lib namespace config_name)
-    ext_log("prepare install for: ${lib}")
+# -----------------------------------------------------------------------------
+# ext_install_lib
+# -----------------------------------------------------------------------------
+# Execute `install()` serveral times to install a library.
+# -----------------------------------------------------------------------------
+function(ext_install_lib lib namespace config_name)
+    ext_log("install library: ${lib}")
 
     install(
         TARGETS "${lib}"
@@ -47,8 +53,13 @@ macro(EXT_INSTALL lib namespace config_name)
             DESTINATION include
         )
     endforeach()
-endmacro(EXT_INSTALL)
+endfunction(ext_install_lib)
 
+# -----------------------------------------------------------------------------
+# ext_install_files
+# -----------------------------------------------------------------------------
+# Copy directories or files
+# -----------------------------------------------------------------------------
 function(ext_install_files from_dir to_dir files)
     foreach (file ${files})
         get_filename_component(parent ${file} DIRECTORY)

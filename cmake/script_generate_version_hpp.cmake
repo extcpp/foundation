@@ -3,10 +3,10 @@
 cmake_minimum_required(VERSION 3.8)
 
 if(NOT EXT_GIT_VERSION_OUT_FILE)
-    set(EXT_GIT_VERSION_OUT_FILE "${CMAKE_CURRENT_LIST_DIR}/version.h")
+    set(EXT_GIT_VERSION_OUT_FILE "${CMAKE_CURRENT_LIST_DIR}/version.hpp")
 endif()
 
-message(STATUS "extINFO -- Trying to write version.h to: ${EXT_GIT_VERSION_OUT_FILE}")
+message(STATUS "[extcpp] SCRIPT: Trying to write version information to: ${EXT_GIT_VERSION_OUT_FILE}")
 
 execute_process(
     COMMAND git rev-parse HEAD

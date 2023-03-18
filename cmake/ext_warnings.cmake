@@ -1,9 +1,11 @@
 # -----------------------------------------------------------------------------
-# ext_define_warning_flags
+# EXT_DEFINE_WARNING_FLAGS
 # -----------------------------------------------------------------------------
-# Defines warning flags
+# Define compiler flags for stricter warnings.
+# (Proposed by David Stone during MeetingC++)
+# TODO: update flags
 # -----------------------------------------------------------------------------
-macro(ext_define_warning_flags)
+macro(EXT_DEFINE_WARNING_FLAGS)
     if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(ext_basic-warnings       -Wall -Wextra -Wpedantic)
         set(ext_more-warnings        ${ext_basic-warnings} -Wcast-align -Wcast-qual -Wconversion)
@@ -30,4 +32,4 @@ macro(ext_define_warning_flags)
         set(ext_stone-warnings       ${ext_more-warnings})
         set(ext_stone-warnings-extra ${ext_stone-warnings})
     endif()
-endmacro(ext_define_warning_flags)
+endmacro(EXT_DEFINE_WARNING_FLAGS)
