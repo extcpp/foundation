@@ -67,6 +67,14 @@ include(ext_warnings)
 # dependencies: ext_logging
 include(ext_generate_version_hpp)
 
+# ext_targets
+#
+# contains:
+# - ext_add_target
+# dependencies: ext_logging
+include(ext_targets)
+
+
 # ext_use_ext_project_defaults
 #
 # contains:
