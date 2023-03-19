@@ -11,7 +11,7 @@ macro(EXT_DECLARE_DEPENDENCIES)
         # our libs
         FetchContent_Declare(
             ExtBasics
-            GIT_REPOSITORY https://github.com/extcpp/basics
+            GIT_REPOSITORY https://github.com/extcpp/basics.git
             GIT_TAG        master
             GIT_PROGRESS   TRUE
             OVERRIDE_FIND_PACKAGE
@@ -19,13 +19,21 @@ macro(EXT_DECLARE_DEPENDENCIES)
 
         FetchContent_Declare(
             Args
-            GIT_REPOSITORY https://github.com/obiwahn/args
+            GIT_REPOSITORY https://github.com/obiwahn/args.git
             GIT_TAG        master
             GIT_PROGRESS   TRUE
             OVERRIDE_FIND_PACKAGE
         )
 
-        # ohter libs
+        # ohter well known libs
+        FetchContent_Declare(
+            Folly
+            GIT_REPOSITORY https://github.com/facebook/folly.git #v2023.03.13.00
+            GIT_TAG        ce2b95715de229fcb51bd97410469a3ad4d2bfb2
+            GIT_PROGRESS   TRUE
+            OVERRIDE_FIND_PACKAGE
+        )
+
         FetchContent_Declare(
             googletest
             GIT_REPOSITORY https://github.com/google/googletest.git
@@ -38,14 +46,6 @@ macro(EXT_DECLARE_DEPENDENCIES)
             cryptopp
             GIT_REPOSITORY https://github.com/abdes/cryptopp-cmake
             GIT_TAG        13cb0fe7e76410258b76975e77fd407400e3f2d1
-            GIT_PROGRESS   TRUE
-            OVERRIDE_FIND_PACKAGE
-        )
-
-        FetchContent_Declare(
-            Subprocess
-            GIT_REPOSITORY https://github.com/arun11299/cpp-subprocess
-            GIT_TAG        1392c47cbbf519bd02ddafb5871526c16b7f2dd1
             GIT_PROGRESS   TRUE
             OVERRIDE_FIND_PACKAGE
         )
