@@ -5,9 +5,10 @@
 # IMPORTANT: Libraries are only declared IFF EXT_DOWNLOAD is set to ON.
 # -----------------------------------------------------------------------------
 macro(EXT_DECLARE_DEPENDENCIES)
-    ext_log("declaring FetchContent dependencies")
+    ext_debug("enter EXT_DECLARE_DEPENDENCIES - EXT_DOWNLOAD: ${EXT_DOWNLOAD}")
     include(FetchContent)
     if(EXT_DOWNLOAD)
+        ext_log("declaring FetchContent dependencies")
         # our libs
         FetchContent_Declare(
             ExtBasics

@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 3.21)
 project(ext-foundation VERSION 0.0.1 LANGUAGES CXX)
 message(STATUS "[extcpp] entering ext::foundation")
 
-# You have to actively pass -DEXT_NO_DOWNLOAD=FALSE to
-# enable the automatic download of dependencies
-option(EXT_DOWNLOAD "allow downloading of dependencies")
-option(EXT_WRITE_VERSION "write git-revision into header")
+# You have to actively pass -DEXT_DOWNLOAD=TRUE to
+# enable the automatic download of dependencies.
+option(EXT_DOWNLOAD "allow downloading of dependencies" OFF)
+option(EXT_WRITE_VERSION "write git-revision into header" OFF)
 
 # include cmake functions and macros
 # NOTE: no functions are actually called
