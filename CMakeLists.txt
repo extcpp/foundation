@@ -1,5 +1,5 @@
 # Copyright - Jan Christoph Uhde <Jan@UhdeJC.com>
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25)
 project(ext-foundation VERSION 0.0.1 LANGUAGES CXX)
 message(STATUS "[extcpp] entering ext::foundation")
 

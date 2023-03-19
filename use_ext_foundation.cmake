@@ -8,13 +8,13 @@ if (NOT TARGET ext::foundation)
             ExtFoundation
             GIT_REPOSITORY https://github.com/extcpp/foundation.git
             GIT_TAG        master
-            OVERRIDE_FIND_PACKAGE
         )
+        FetchContent_MakeAvailable(ExtFoundation)
+    else()
+        find_package(ExtFoundation REQUIRED)
     endif()
-    message(STATUS "[extcpp] find_package(ExtFoundation)")
-    find_package(ExtFoundation REQUIRED)
-    ext_log("found ext::foundation")
 
-    # TODO add modules from ~/.local/lib/cmake or the location specified by ExtFoundation-config.cmake
-    # include(define_ext_foundation_macros)
+    if(NOT TARGET ext::foundation)
+        message(FATAL_ERROR "[extcpp] can not provide target ext::foundation")
+    endif()
 endif()
