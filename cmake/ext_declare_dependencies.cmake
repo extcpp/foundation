@@ -26,7 +26,7 @@ macro(EXT_DECLARE_DEPENDENCIES)
 
         # ohter well known libs
         FetchContent_Declare(
-            GTest
+            GoogleTest
             GIT_REPOSITORY https://github.com/google/googletest.git
             GIT_TAG        v1.14.0
             GIT_PROGRESS   TRUE
