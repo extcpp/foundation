@@ -7,7 +7,7 @@ function(ext_add_target target find_name)
         endforeach()
 
         # use find_package first
-        find_package(${find_name} ${find_package_args})
+        find_package(${find_name} ${find_package_args} QUIET)
         if (NOT TARGET ${target})
             #use FetchContent_MakeAvailable if target is still not defined and pass args
             FetchContent_MakeAvailable(${find_name} ${ARGN})
