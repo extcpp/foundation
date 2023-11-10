@@ -8,7 +8,8 @@
 
 #define EXT_DELETE(...)
 #define EXT_EXPAND(...) __VA_ARGS__
-#define EXT_STRINGIFY(a) #a
+#define EXT_STRINGIFY_DETAIL(a) #a
+#define EXT_STRINGIFY(a) EXT_STRINGIFY_DETAIL(a)
 
 // use indirection (EXT_INTERNAL_CONCATENATE_IMPL) because ## inhibits expansion
 #define EXT_INTERNAL_CONCATENATE_IMPL(s1, ...) s1##__VA_ARGS__
