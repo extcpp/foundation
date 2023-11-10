@@ -40,9 +40,9 @@ macro(EXT_DECLARE_DEPENDENCIES)
         )
 
         FetchContent_Declare(
-            cryptopp
+            cryptopp_cmake
             GIT_REPOSITORY https://github.com/abdes/cryptopp-cmake
-            GIT_TAG        13cb0fe7e76410258b76975e77fd407400e3f2d1
+            GIT_TAG        CRYPTOPP_8_9_0
             GIT_PROGRESS   TRUE
         )
 
