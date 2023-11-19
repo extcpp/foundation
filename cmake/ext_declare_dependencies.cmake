@@ -33,6 +33,13 @@ macro(EXT_DECLARE_DEPENDENCIES)
         )
 
         FetchContent_Declare(
+            GoogleBenchmark
+            GIT_REPOSITORY https://github.com/google/benchmark.git
+            GIT_TAG        v1.8.3
+            GIT_PROGRESS   TRUE
+        )
+
+        FetchContent_Declare(
             Abseil
             GIT_REPOSITORY https://github.com/abseil/abseil-cpp.git  #20230125.1
             GIT_TAG        c8a2f92586fe9b4e1aff049108f5db8064924d8e
